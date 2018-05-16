@@ -1,0 +1,20 @@
+1) Install Expo client on your device, create-react-native-app (CRNA) and react-native-cli on your machine
+https://github.com/react-community/create-react-native-app
+
+Some erros was oquted before the launching of the CRNA, but suggestions from helped me to solve them out
+I used QR code, just like in the example, to add the app into the Expo client
+At this point live was allready working on your phone (iOS)
+
+2) But how can I watch my app running on Android device, without having the physical one?
+It was easy to find out, that react-native-cli can eject project for Android studio with 'react-native run-android' command
+https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md
+
+3) At this moment we can start coding. Make sure that you have Node 10+ install.
+Othervise it can cause some unexpected problems.
+The index file is App.js, at our index folder
+As you may allready know, React Native uses JSX, just like React JS. But there are some defferenses.
+Frankly speaking, there are not as much of them, as between HTML and JSX attributes names.
+'View' instead of 'div' for example. And you can reassign all this stuff btw
+ 
+4) The first library that I've started to use is react-native-elements.
+It's very usefull set of different UI elements, which looks likes native ones on each OS
