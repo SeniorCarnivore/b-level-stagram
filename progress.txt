@@ -1,15 +1,20 @@
 1) Install Expo client on your device, create-react-native-app (CRNA) and react-native-cli on your machine
 https://github.com/react-community/create-react-native-app
 
-Some erros was oquted before the launching of the CRNA, but suggestions from helped me to solve them out
+Some erros has occurred before the launching of the CRNA, but suggestions from helped me to solve them out
 I used QR code, just like in the example, to add the app into the Expo client
-At this point live was allready working on your phone (iOS)
+At this point livereload was already working on my phone (iOS)
 
 2) But how can I watch my app running on Android device, without having the physical one?
-It was easy to find out, that react-native-cli can eject project for Android studio with 'react-native run-android' command
-https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md
+I've remembered, how painful was my experience with Android Studio (for me, as for JS developer),
+so I've found another way to emulate Android device: https://www.genymotion.com/fun-zone/
+It was painful as well (especially virtualization settings and BIOS crawling) as well, but a bit faster.
+Here is a helpful gide: https://medium.com/@devmrin/complete-how-to-create-react-native-app-with-genymotion-android-emulator-on-windows-10-in-10-3834fd90b074
+And one more, that solved most of my problems
+https://docs.expo.io/versions/v27.0.0/workflow/genymotion# (pay atantion to version in link, it can be outdated)
+but not all of them ...
 
-3) At this moment we can start coding. Make sure that you have Node 10+ install.
+3) At this moment we can start coding. Make sure that you have Node 10+ installed.
 Othervise it can cause some unexpected problems.
 The index file is App.js, at our index folder
 As you may allready know, React Native uses JSX, just like React JS. But there are some defferenses.
