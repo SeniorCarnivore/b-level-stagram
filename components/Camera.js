@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Camera,
   Permissions
@@ -7,10 +8,11 @@ import {
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 
-class Camera extends React.Component {
+class AppCamera extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -66,4 +68,4 @@ class Camera extends React.Component {
   }
 }
 
-export default Camera;
+export default AppCamera;

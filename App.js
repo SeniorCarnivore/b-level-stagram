@@ -1,14 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import {
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+
 import {
   Header,
   Button
 } from 'react-native-elements';
 
-import { Camera } from 'react-native-camera';
+import AppCamera from './components/Camera';
 
-export default class App extends React.Component {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cameraOn: false
+    };
+  }
+
+  toggleCamera = () => {
+    const { cameraOn } = this.state;
+
+    this.setState({
+      cameraOn: !cameraOn
+    });
+  }
+
   render() {
+    const { cameraOn } = this.state;
+
     return (
       <View style={styles.container}>
         <Header style={styles.header}
@@ -16,10 +39,14 @@ export default class App extends React.Component {
           centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
           rightComponent={{ icon: 'home', color: '#fff' }}
         />
-        <View style={styles.content}>
-        </View>
-        <View style={styles.bottomMenu}>
-          <Button buttonStyle={styles.cameraButton}
+        {
+          cameraOn &&
+          <View style={styles.content}>
+            <AppCamera/>
+          </View>
+        }
+        <View style={[styles.bottomMenu, {}]}>
+          <Button onPress={ this.toggleCamera } buttonStyle={styles.cameraButton}
             icon={{
               name: 'camera',
               size: 40,
@@ -63,3 +90,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+export default App;
