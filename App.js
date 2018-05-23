@@ -10,6 +10,8 @@ import {
   Header,
 } from 'react-native-elements';
 
+import axios from 'axios';
+
 import AppCamera from './components/Camera';
 import BottomMenu from './components/BottomMenu';
 import Feed from './components/Feed';
@@ -19,8 +21,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeScreen: 'feed'
+      activeScreen: 'friends',
+      friends: [],
     };
+
+    this.getUsers(30)
   }
 
   toggleScreen = screen => {
@@ -34,11 +39,35 @@ class App extends React.Component {
   screenActive = screen =>
     this.state.activeScreen === screen;
 
+    
+
+  getUsers = amount =>
+    axios.get('https://randomuser.me/api/', {
+      params: {
+        dataType: 'json',
+        results: amount,
+      }
+    })
+    .then(response => {
+      this.setState({
+        friends: response.data.results
+      });
+    })
+    .catch(error => {
+      console.log(error);
+      return [];
+    });
+
   render() {
     const {
       screenActive,
       toggleScreen
     } = this;
+
+    const {
+      activeScreen,
+      friends
+    } = this.state;
 
     return (
       <View style={ styles.container }>
@@ -48,7 +77,7 @@ class App extends React.Component {
             color: '#fff'
           }}
           centerComponent={{
-            text: 'MY TITLE',
+            text: activeScreen.toUpperCase(),
             style: { color: '#fff' }
           }}
           rightComponent={{
@@ -60,7 +89,11 @@ class App extends React.Component {
         <View style={styles.content}>
           { screenActive('feed') && <Feed/> }
           { screenActive('camera') && <AppCamera/> }
-          { screenActive('friends') && <Friends/> }
+          { screenActive('friends') &&
+            <Friends
+              friends = { friends }
+            />
+          }
         </View>
 
         <BottomMenu

@@ -7,21 +7,27 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import { getUsers } from '../helpers/Requests';
+import Friend from './Friend';
 
 class Friends extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    };
-  }
+
+  buildFriendsList = friends =>
+    friends.map(friend => {
+      const { username } = friend.login;
+  
+      return <Friend
+        key = { username }
+        data = { friend }
+      />
+    })
 
   render() {
-
+    const { friends } = this.props;
+    
     return (
       <View style={ styles.friendsList }>
-        <Text>Friends</Text>
+        { friends && this.buildFriendsList(friends) }
+        { !friends && <Text>You have no friends</Text> }
       </View>
     );
   }
@@ -29,7 +35,7 @@ class Friends extends React.Component {
 
 const styles = StyleSheet.create({
   friendsList: {
-    backgroundColor: '#f064de'
+    overflow: 'scroll'
   }
 });
 

@@ -6,13 +6,9 @@ I used QR code, just like in the example, to add the app into the Expo client
 At this point livereload was already working on my phone (iOS)
 
 2) But how can I watch my app running on Android device, without having the physical one?
-I've remembered, how painful was my experience with Android Studio (for me, as for JS developer),
-so I've found another way to emulate Android device: https://www.genymotion.com/fun-zone/
-It was painful as well (especially virtualization settings and BIOS crawling) as well, but a bit faster.
-Here is a helpful gide: https://medium.com/@devmrin/complete-how-to-create-react-native-app-with-genymotion-android-emulator-on-windows-10-in-10-3834fd90b074
-And one more, that solved most of my problems
-https://docs.expo.io/versions/v27.0.0/workflow/genymotion# (pay atantion to version in link, it can be outdated)
-but not all of them ...
+It took a lot of time for me as for JS developer, but I've found out, that Android Studio is the moust stable way
+to work with Expo. It takes a lot of time to set all stuff up, so it's beter to make sure, thay you have working
+Android SDK Device Simulator on your machine
 
 3) At this moment we can start coding. Make sure that you have Node 10+ installed.
 Othervise it can cause some unexpected problems.
