@@ -3,7 +3,7 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  View,
+  ScrollView,
   TouchableOpacity
 } from 'react-native';
 
@@ -25,17 +25,17 @@ class Friends extends React.Component {
     const { friends } = this.props;
     
     return (
-      <View style={ styles.friendsList }>
+      <ScrollView style={ styles.friendsList }>
         { friends && this.buildFriendsList(friends) }
         { !friends && <Text>You have no friends</Text> }
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   friendsList: {
-    overflow: 'scroll'
+    paddingTop: 1
   }
 });
 

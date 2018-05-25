@@ -2,13 +2,14 @@ import React from 'react';
 
 import {
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
 import {
-  Header,
-} from 'react-native-elements';
+  Text,
+  Typography,
+  Colors,
+} from 'react-native-ui-lib';
 
 import axios from 'axios';
 
@@ -21,7 +22,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeScreen: 'friends',
+      activeScreen: 'camera',
       friends: [],
     };
 
@@ -36,10 +37,8 @@ class App extends React.Component {
     });
   }
 
-  screenActive = screen =>
+  isScreenActive = screen =>
     this.state.activeScreen === screen;
-
-    
 
   getUsers = amount =>
     axios.get('https://randomuser.me/api/', {
@@ -60,7 +59,7 @@ class App extends React.Component {
 
   render() {
     const {
-      screenActive,
+      isScreenActive,
       toggleScreen
     } = this;
 
@@ -69,27 +68,18 @@ class App extends React.Component {
       friends
     } = this.state;
 
+    const headerTitle = activeScreen.toUpperCase()
+
     return (
       <View style={ styles.container }>
-        <Header style={ styles.header }
-          leftComponent={{
-            icon: 'menu',
-            color: '#fff'
-          }}
-          centerComponent={{
-            text: activeScreen.toUpperCase(),
-            style: { color: '#fff' }
-          }}
-          rightComponent={{
-            icon: 'home',
-            color: '#fff'
-          }}
-        />
+        <View style={ styles.header }>
+          <Text black h1 center>{ headerTitle }</Text>
+        </View>
 
         <View style={styles.content}>
-          { screenActive('feed') && <Feed/> }
-          { screenActive('camera') && <AppCamera/> }
-          { screenActive('friends') &&
+          { isScreenActive('feed') && <Feed/> }
+          { isScreenActive('camera') && <AppCamera/> }
+          { isScreenActive('friends') &&
             <Friends
               friends = { friends }
             />
@@ -105,12 +95,29 @@ class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    paddingTop: 30,
+    borderBottomWidth: 1,
+    borderBottomColor: '#999',
+  },
+
   container: {
     flex: 1,
   },
 
   content: {
     flex: .9
+  },
+});
+
+Colors.loadColors({
+  black: '#000',
+});
+
+Typography.loadTypographies({
+  h1: {
+    fontSize: 30,
+    lineHeight: 50
   },
 });
 

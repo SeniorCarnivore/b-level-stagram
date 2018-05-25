@@ -8,8 +8,13 @@ import {
 
 import {
   Avatar,
+  Button,
   ListItem
-} from 'react-native-elements';
+} from 'react-native-ui-lib';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { createInitials } from '../helpers/Helpers'
 
 class Friend extends React.Component {
 
@@ -19,30 +24,74 @@ class Friend extends React.Component {
     const {
       picture,
       name,
-      login
+      login,
     } = data;
 
     const {
-      first: firstName,
-      last: lastName
+      first,
+      last,
     } = name;
 
-    const initials = (firstName[0] + lastName[0]).toUpperCase();
+    const { username } = login;
+    const { thumbnail } = picture;
+    const initials = createInitials(first, last);
 
     return (
       <ListItem
-        title={ login.username }
-        avatarStyle = {{
-          width: 50,
-          height: 50
-        }}
-        leftAvatar = {{
-          source: { uri: picture.thumbnail },
-          title: initials
-        }}
-      />
+        style = { styles.friend }
+      >
+        <ListItem.Part left>
+          <Avatar
+            containerStyle = { styles.avatar }
+            title = { initials }
+            imageSource = {{
+              uri: thumbnail
+            }}
+          />
+        </ListItem.Part>
+
+        <ListItem.Part middle>
+          <Text>{ username }</Text>
+        </ListItem.Part>
+        
+        <ListItem.Part style = { styles.buttonHolder }>
+          <Button
+            title = ''
+            style = { styles.button }
+            backgroundColor = 'transparent'
+            avoidInnerPadding = { true }
+            avoidMinWidth = { true }
+          >
+            <Icon
+              name='chevron-right'
+              size={ 30 }
+              color='#999'
+            />
+          </Button>
+        </ListItem.Part>
+      </ListItem>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  friend: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#999',
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+
+  avatar: {
+    marginRight: 10
+  },
+
+  buttonHolder: {
+    minWidth: 50,
+    maxWidth: 50,
+    marginLeft: 'auto',
+    alignSelf: 'flex-end',
+  },
+});
 
 export default Friend;
